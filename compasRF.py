@@ -6,7 +6,7 @@ from sklearn import datasets
 
 iris = datasets.load_iris()
 from sklearn.ensemble import RandomForestClassifier
-rfc = RandomForestClassifier()
+rfc = RandomForestClassifier(n_estimators = 500)
 
 
 #matrix math
@@ -135,13 +135,19 @@ for i in range(len(realVSpred)):
         #print('False Negative')
         FN += 1
         
+PPV = TP/(TP+FP)
+NPV = TN/(TN+FN)
 
 print('True Positive:', TP, 'False Positive:', FP, 'True Negative:', TN, 'False Negative:', FN)
 print('Trues:', TP+TN, 'False:', FP+FN, 'Ratio: True/All = ', (TP+TN)/len(realVSpred))
+print('PPV:', PPV, 'NPV ', NPV)
+
 
 
 print("--- %s seconds ---" % (time.time() - start_time))
 
+
+#how important are each of the feature
 rfc.feature_importances_
 
 
